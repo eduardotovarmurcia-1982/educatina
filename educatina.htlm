@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educatina - El Futuro del Aprendizaje</title>
+    <!-- Carga de Tailwind CSS para el diseño -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuración de la fuente global y fondo oscuro */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        :root {
+            --neon-color: #e879f9; /* Tailwind fuchsia-400 */
+            --bg-dark: #0d0d10;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Fondo negro profundo para el contraste neón */
+            background-color: var(--bg-dark); 
+            color: #d1d5db; /* Texto gris claro general */
+        }
+        /* Clase para el efecto de brillo neón en el texto */
+        .text-neon-glow {
+            text-shadow: 0 0 5px var(--neon-color), 0 0 10px var(--neon-color);
+            color: var(--neon-color);
+        }
+        /* Clase para el efecto de borde/sombra neón en elementos interactivos */
+        .border-neon-glow {
+            box-shadow: 0 0 10px rgba(232, 121, 249, 0.6); /* Sombra morada semi-transparente */
+            border-color: var(--neon-color);
+        }
+        /* Animación de pulso sutil para el título */
+        @keyframes pulse-neon {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.01); opacity: 0.95; }
+        }
+        .animate-pulse-neon {
+            animation: pulse-neon 4s infinite ease-in-out;
+        }
+        /* Estilos para el borde dinámico del menú */
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--neon-color);
+            transition: width 0.3s ease-in-out;
+            box-shadow: 0 0 5px var(--neon-color);
+        }
+        /* Estilo para el área de resultado del LLM */
+        .llm-output {
+            white-space: pre-wrap;
+            background-color: #1a0f21;
+            border-left: 4px solid var(--neon-color);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+        }
+        .llm-output-loading {
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Encabezado/Navegación -->
+    <header class="sticky top-0 z-50 bg-black bg-opacity-80 backdrop-blur-sm shadow-lg shadow-fuchsia-900/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo Educatina con efecto neón -->
+            <div class="text-3xl font-extrabold tracking-widest text-neon-glow uppercase">
+                Educatina
+            </div>
+            
+            <!-- Menú de Navegación -->
+            <nav class="space-x-8 hidden md:flex">
+                <a href="#" class="nav-link text-gray-300 hover:text-fuchsia-400 transition duration-300">Inicio</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-fuchsia-400 transition duration-300">Cursos</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-fuchsia-400 transition duration-300">Blog Tech</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-fuchsia-400 transition duration-300">Contacto</a>
+            </nav>
+
+            <!-- Botón de Acción (CTA) -->
+            <button class="bg-fuchsia-600 hover:bg-fuchsia-700 text-black font-semibold py-2 px-4 rounded-lg transition duration-300 border-neon-glow">
+                Acceder
+            </button>
+        </div>
+    </header>
+
+    <main class="py-16 md:py-24">
+        
+        <!-- Sección Principal (Hero) -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-24">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 uppercase leading-tight animate-pulse-neon">
+                <span class="text-neon-glow">El Futuro</span> del Aprendizaje.
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-4xl mx-auto text-gray-400">
+                Plataforma educativa con tecnología de punta. Cursos impulsados por IA y experiencias inmersivas.
+            </p>
+            <div class="space-x-4">
+                <button class="bg-fuchsia-600 hover:bg-fuchsia-700 text-black font-bold py-3 px-8 rounded-xl transition duration-300 transform hover:scale-[1.03] border-neon-glow">
+                    Explorar Cursos
+                </button>
+                <button class="bg-transparent border border-fuchsia-500 text-fuchsia-400 font-bold py-3 px-8 rounded-xl transition duration-300 transform hover:scale-[1.03] hover:bg-fuchsia-900/30 border-neon-glow">
+                    Ver Demo
+                </button>
+            </div>
+        </section>
+
+        <!-- Sección de Características (Grid Futurista) -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold mb-12 text-center text-neon-glow">Nuestros Pilares Tecnológicos</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Tarjeta 1: IA Personalizada (LLM Feature 1: Course Ideas) -->
+                <div class="bg-gray-900 border border-fuchsia-800 rounded-xl p-6 transition duration-500 hover:shadow-2xl hover:shadow-fuchsia-700/50 hover:border-fuchsia-400 border-neon-glow">
+                    <div class="text-5xl mb-4 text-fuchsia-400">⚡</div> <!-- Icono: Rayo / Poder -->
+                    <h3 class="text-xl font-semibold mb-3 text-neon-glow">IA Tutora Personalizada</h3>
+                    <p class="text-gray-400 mb-4">Algoritmos que adaptan el contenido y ritmo de estudio a tu estilo de aprendizaje único, garantizando la máxima retención.</p>
+                    <button id="generateCourseIdeasBtn" class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-black font-bold py-2 px-4 rounded-lg transition duration-300 mt-2">
+                        ✨ Generar Ideas de Cursos IA
+                    </button>
+                    <div id="courseIdeasOutput" class="mt-4 text-sm text-gray-300 llm-output hidden"></div>
+                </div>
+
+                <!-- Tarjeta 2: Realidad Extendida -->
+                <div class="bg-gray-900 border border-fuchsia-800 rounded-xl p-6 transition duration-500 hover:shadow-2xl hover:shadow-fuchsia-700/50 hover:border-fuchsia-400 border-neon-glow">
+                    <div class="text-5xl mb-4 text-fuchsia-400">🌐</div> <!-- Icono: Globo / VR -->
+                    <h3 class="text-xl font-semibold mb-3 text-neon-glow">Realidad Extendida (XR)</h3>
+                    <p class="text-gray-400">Lecciones inmersivas con realidad virtual y aumentada para experimentar la física, la historia o la medicina como nunca antes.</p>
+                </div>
+
+                <!-- Tarjeta 3: Conexión Global -->
+                <div class="bg-gray-900 border border-fuchsia-800 rounded-xl p-6 transition duration-500 hover:shadow-2xl hover:shadow-fuchsia-700/50 hover:border-fuchsia-400 border-neon-glow">
+                    <div class="text-5xl mb-4 text-fuchsia-400">💡</div> <!-- Icono: Bombilla / Idea -->
+                    <h3 class="text-xl font-semibold mb-3 text-neon-glow">Blockchain para Certificados</h3>
+                    <p class="text-gray-400">Certificados a prueba de manipulaciones basados en tecnología blockchain, verificables instantáneamente por empleadores en todo el mundo.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Separador Estilizado -->
+        <div class="my-20 max-w-4xl mx-auto border-t border-fuchsia-900/50"></div>
+
+        <!-- Sección LLM Feature 2: Asistente de Estudio Rápido -->
+        <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 p-8 bg-gray-900 rounded-2xl border border-fuchsia-700 border-neon-glow">
+            <h2 class="text-3xl font-extrabold mb-6 text-neon-glow text-center">✨ Asistente de Estudio Rápido IA</h2>
+            <p class="text-lg mb-6 text-gray-400 text-center">Pregunta cualquier concepto técnico y obtén una explicación concisa y avanzada al instante. Ejemplo: "Explica la arquitectura Zero Trust."</p>
+
+            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                <input type="text" id="tutorInput" placeholder="Escribe tu pregunta o concepto aquí..." 
+                       class="flex-grow p-3 rounded-lg bg-black border border-fuchsia-800 text-fuchsia-400 focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500" 
+                       aria-label="Pregunta al Tutor IA">
+                <button id="tutorAskBtn" class="bg-fuchsia-500 hover:bg-fuchsia-400 text-black font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-[1.05] border-neon-glow">
+                    ✨ Preguntar a la IA
+                </button>
+            </div>
+            
+            <div id="tutorOutputContainer" class="mt-4">
+                <p class="text-gray-500 mb-2">Respuesta del Tutor IA:</p>
+                <div id="tutorOutput" class="llm-output min-h-[50px] flex items-center justify-center text-gray-400 text-sm">
+                    Esperando tu consulta...
+                </div>
+            </div>
+        </section>
+
+        <!-- Separador Estilizado -->
+        <div class="my-20 max-w-4xl mx-auto border-t border-fuchsia-900/50"></div>
+
+
+        <!-- Sección de CTA Secundaria -->
+        <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center p-12 bg-gray-900 rounded-2xl border border-fuchsia-700 border-neon-glow">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-neon-glow">Únete a la Revolución Educativa</h2>
+            <p class="text-lg mb-8 text-gray-400">Regístrate hoy y desbloquea el acceso a un ecosistema de conocimiento diseñado para el siglo XXI.</p>
+            <form class="flex flex-col md:flex-row gap-4 justify-center">
+                <input type="email" placeholder="Tu correo electrónico futurista..." 
+                       class="flex-grow md:max-w-md p-3 rounded-lg bg-black border border-fuchsia-800 text-fuchsia-400 focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500" 
+                       aria-label="Correo Electrónico">
+                <button type="submit" class="bg-fuchsia-500 hover:bg-fuchsia-400 text-black font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-[1.05] border-neon-glow">
+                    ¡Comenzar Ahora!
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Pie de Página (Footer) -->
+    <footer class="bg-black py-8 mt-12 border-t border-fuchsia-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 Educatina. Todos los derechos reservados.</p>
+            <div class="mt-2 space-x-4">
+                <a href="#" class="hover:text-fuchsia-400 transition duration-300">Términos</a>
+                <a href="#" class="hover:text-fuchsia-400 transition duration-300">Privacidad</a>
+                <a href="#" class="hover:text-fuchsia-400 transition duration-300">Ayuda</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- CONSTANTES Y CONFIGURACIÓN DEL API DE GEMINI ---
+        const API_KEY = ""; // La clave se proporcionará automáticamente en el entorno de ejecución
+        const MODEL = "gemini-2.5-flash-preview-09-2025";
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
+        const MAX_RETRIES = 5;
+
+        // --- FUNCIÓN DE UTILIDAD PARA LLAMADAS AL API CON BACKOFF EXPONENCIAL ---
+        async function fetchWithExponentialBackoff(payload, responseType = 'text') {
+            for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+                try {
+                    const headers = { 'Content-Type': 'application/json' };
+                    if (responseType === 'json') {
+                         // Gemini API requires Content-Type: application/json for structured output
+                    }
+
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: headers,
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                        
+                        if (text) {
+                            if (responseType === 'json') {
+                                try {
+                                    return JSON.parse(text);
+                                } catch (e) {
+                                    console.error("Error parsing JSON response:", text, e);
+                                    throw new Error("Respuesta de la IA no es un JSON válido.");
+                                }
+                            }
+                            return text;
+                        }
+                        return "Error: Respuesta vacía de la IA.";
+
+                    } else if (response.status === 429 && attempt < MAX_RETRIES - 1) {
+                        // Retry on Rate Limit (429)
+                        const delay = Math.pow(2, attempt) * 1000 + Math.random() * 1000;
+                        console.warn(`Rate limit excedido. Reintentando en ${delay / 1000}s...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        continue;
+                    } else {
+                        // Handle other errors or final failure
+                        const errorData = await response.json();
+                        throw new Error(`Error en la llamada al API: ${response.status} - ${errorData.error?.message || 'Error desconocido'}`);
+                    }
+                } catch (error) {
+                    console.error("Error en fetchWithExponentialBackoff:", error);
+                    if (attempt === MAX_RETRIES - 1) throw error; 
+                    // No need for further delay if throwing the final error
+                }
+            }
+        }
+
+        // --- FEATURE 1: GENERADOR DE IDEAS DE CURSOS (JSON STRUCTURED) ---
+        document.getElementById('generateCourseIdeasBtn').addEventListener('click', async () => {
+            const outputDiv = document.getElementById('courseIdeasOutput');
+            const button = document.getElementById('generateCourseIdeasBtn');
+            
+            outputDiv.classList.remove('hidden');
+            outputDiv.classList.add('llm-output-loading');
+            outputDiv.innerHTML = '<div class="text-neon-glow flex items-center justify-center">Generando ideas... 🚀</div>';
+            button.disabled = true;
+            button.textContent = 'Generando...';
+
+            const systemPrompt = "Actúa como un futurista y diseñador curricular. Genera 3 ideas de cursos de tecnología de vanguardia para una plataforma educativa llamada Educatina. El curso debe ser innovador y relevante para el futuro laboral.";
+            const userQuery = "Genera 3 cursos avanzados sobre: (1) Desarrollo de IAs con 'Emotional Intelligence', (2) Ingeniería de prompts para 'Modelos de lenguaje masivos' (LLMs), y (3) Seguridad cibernética post-cuántica. Asegúrate de que el 'Nivel' sea 'Avanzado' o 'Experto'.";
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "ARRAY",
+                        items: {
+                            type: "OBJECT",
+                            properties: {
+                                "Nombre": { "type": "STRING", "description": "Nombre atractivo del curso." },
+                                "Descripcion": { "type": "STRING", "description": "Resumen de lo que se aprenderá." },
+                                "Nivel": { "type": "STRING", "description": "Nivel de dificultad: Avanzado o Experto." }
+                            },
+                            "propertyOrdering": ["Nombre", "Descripcion", "Nivel"]
+                        }
+                    }
+                }
+            };
+
+            try {
+                const ideas = await fetchWithExponentialBackoff(payload, 'json');
+                
+                let html = '<p class="text-neon-glow mb-2 font-semibold">Ideas Frescas de la IA:</p>';
+                if (Array.isArray(ideas)) {
+                    ideas.forEach((idea, index) => {
+                        html += `
+                            <div class="mb-3 p-3 bg-gray-800 rounded-lg">
+                                <p class="text-base font-bold text-fuchsia-300">${index + 1}. ${idea.Nombre || 'Curso Sin Nombre'}</p>
+                                <p class="text-sm text-gray-400 mt-1">${idea.Descripcion || 'Sin descripción.'}</p>
+                                <p class="text-xs mt-1 italic text-fuchsia-500">Nivel: ${idea.Nivel || 'N/A'}</p>
+                            </div>
+                        `;
+                    });
+                } else {
+                    html = '<p class="text-red-400">Error: Formato de ideas inesperado.</p>';
+                }
+                outputDiv.innerHTML = html;
+
+            } catch (error) {
+                outputDiv.innerHTML = `<p class="text-red-400">Error IA: ${error.message}. Por favor, inténtalo de nuevo.</p>`;
+            } finally {
+                outputDiv.classList.remove('llm-output-loading');
+                button.disabled = false;
+                button.textContent = '✨ Generar Ideas de Cursos IA';
+            }
+        });
+
+        // --- FEATURE 2: ASISTENTE DE ESTUDIO RÁPIDO (TEXT GENERATION) ---
+        document.getElementById('tutorAskBtn').addEventListener('click', async () => {
+            const inputElement = document.getElementById('tutorInput');
+            const outputDiv = document.getElementById('tutorOutput');
+            const button = document.getElementById('tutorAskBtn');
+            const userQuery = inputElement.value.trim();
+
+            if (!userQuery) {
+                outputDiv.innerHTML = 'Por favor, escribe un concepto o pregunta para el tutor.';
+                return;
+            }
+
+            outputDiv.classList.add('llm-output-loading');
+            outputDiv.innerHTML = '<div class="text-neon-glow flex items-center justify-center">Analizando consulta... 🧠</div>';
+            button.disabled = true;
+            button.textContent = 'Analizando...';
+
+            const systemPrompt = "Actúa como un tutor experto en tecnología de nivel universitario. Tu respuesta debe ser concisa, clara y avanzada (máximo 4 frases). Responde en español.";
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                tools: [{ "google_search": {} }] // Habilitar la búsqueda para obtener información actualizada
+            };
+
+            try {
+                const responseText = await fetchWithExponentialBackoff(payload, 'text');
+                
+                // Formatear el texto de respuesta
+                const formattedText = responseText.replace(/\*\*/g, '<strong>').replace(/\n/g, '<br>');
+                outputDiv.innerHTML = formattedText;
+
+            } catch (error) {
+                outputDiv.innerHTML = `<p class="text-red-400">Error IA: ${error.message}. Verifica tu conexión.</p>`;
+            } finally {
+                outputDiv.classList.remove('llm-output-loading');
+                button.disabled = false;
+                button.textContent = '✨ Preguntar a la IA';
+            }
+        });
+
+    </script>
+</body>
+</html>
